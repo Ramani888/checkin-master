@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "EventHive",
+    "slug": "EventHive",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/app_splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.whizzarc.eventhive"
+    },
+    "owner": "poojadassani",
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/app_splash.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/app_splash.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a30931da-68d3-47a4-9a43-a4a3bdfe5d1e"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a30931da-68d3-47a4-9a43-a4a3bdfe5d1e"
+    },
+    "plugins": [
+      "expo-font"
+     
+
+    ]
+  }
+}
