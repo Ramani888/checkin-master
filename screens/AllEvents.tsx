@@ -98,7 +98,7 @@ const AllEvents: React.FC<any> = ({ navigation }) => {
 
     const handleAddEvent = async () => {
 
-        setIsAddingEvent(false)
+        eventName && setIsAddingEvent(false)
         const isConnected = await checkInternetConnectivity();
         if (!isConnected) {
             Alert.alert(strings.noInternet);
@@ -205,7 +205,7 @@ const AllEvents: React.FC<any> = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.sidebar}>
                 <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ borderWidth: 1, borderColor: '#DFE5EC', width: 44, height: 44, justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ borderWidth: 1, borderColor: '#DFE5EC', width: 44, height: 44, justifyContent: 'center', alignItems: 'center', marginLeft: 15 }}>
                         <AntDesign name="arrowleft" size={24} color="#55A5FF" />
 
                     </TouchableOpacity>
@@ -282,7 +282,7 @@ const AllEvents: React.FC<any> = ({ navigation }) => {
                 {isAddingEvent ? (
                     <View style={styles.addEventContainer}>
 
-                        <TouchableOpacity onPress={() => setIsAddingEvent(false)} style={{ backgroundColor: '#E6F2FF', width: 64, height: 64, justifyContent: 'center', alignItems: 'center', borderRadius: 30, alignSelf: 'flex-end', marginTop: 2, marginBottom: 44 }}>
+                        <TouchableOpacity onPress={() => setIsAddingEvent(false)} style={{ backgroundColor: '#E6F2FF', width: 64, height: 64, justifyContent: 'center', alignItems: 'center', borderRadius: 30, alignSelf: 'flex-end', marginBottom: 20 }}>
                             <Entypo name="cross" size={24} color="black" />
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -293,6 +293,8 @@ const AllEvents: React.FC<any> = ({ navigation }) => {
                         <Text style={styles.eventIdHeading}>{strings.eventId}</Text>
                         <View style={styles.input}>
                             <TextInput
+                                placeholder='Enter Event ID'
+                                placeholderTextColor={colors.grayScale4}
                                 style={{ flex: 1, paddingHorizontal: 20 }}
                                 value={eventName}
                                 onChangeText={setEventName}
@@ -302,7 +304,7 @@ const AllEvents: React.FC<any> = ({ navigation }) => {
                         <TouchableOpacity style={styles.addEventButton} onPress={handleAddEvent}>
                             <Text style={styles.buttonText}>{'Add Event'}</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => setIsAddingEvent(false)} style={{ marginTop: 41 }}>
+                        <TouchableOpacity onPress={() => setIsAddingEvent(false)} style={styles.cancelButton}>
                             <Text style={{ color: '#697F96', fontSize: 20 }}>Cancel</Text>
                         </TouchableOpacity>
                     </View>
@@ -316,14 +318,16 @@ const AllEvents: React.FC<any> = ({ navigation }) => {
                     </View>
                 )}
             </View>
-            {pendingSync != null && pendingSync.length > 0 && (
-                <TouchableOpacity style={styles.syncButton} onPress={handleSync}>
-                    <View style={styles.syncButtonContent}>
-                        <Ionicons name='sync' color={colors.whiteColor} size={18} />
-                        <Text style={styles.syncButtonText}>Sync</Text>
-                    </View>
-                </TouchableOpacity>
-            )}
+            {
+                pendingSync != null && pendingSync.length > 0 && (
+                    <TouchableOpacity style={styles.syncButton} onPress={handleSync}>
+                        <View style={styles.syncButtonContent}>
+                            <Ionicons name='sync' color={colors.whiteColor} size={18} />
+                            <Text style={styles.syncButtonText}>Sync</Text>
+                        </View>
+                    </TouchableOpacity>
+                )
+            }
             <Modal
                 animationType="fade"
                 transparent={true}
@@ -337,7 +341,7 @@ const AllEvents: React.FC<any> = ({ navigation }) => {
                     </View>
                 </View>
             </Modal>
-        </View>
+        </View >
     );
 };
 
@@ -360,7 +364,8 @@ const styles = StyleSheet.create({
         color: "#01244D",
         textAlign: 'center',
         marginBottom: 20,
-        marginTop: 10
+        marginTop: 10,
+        marginRight: 50
     },
     noEventsContainer: {
         flex: 1,
@@ -491,13 +496,13 @@ const styles = StyleSheet.create({
     addEventContainer: {
         justifyContent: 'center',
         width: '80%',
-        height: 623,
+        // height: 623,
         backgroundColor: colors.whiteColor,
-        padding: 40,
+        padding: 20,
         borderRadius: dimen.cornerRadiusL,
         marginHorizontal: 60,
         alignSelf: 'center',
-        marginBottom: 30,
+        marginBottom: 120,
         alignItems: 'center'
     },
     modalContainer: {
@@ -518,14 +523,24 @@ const styles = StyleSheet.create({
         color: colors.textColor,
     },
     addEventButton: {
-
         backgroundColor: colors.primary,
         borderRadius: dimen.cornerRadiusS,
         alignSelf: 'center',
         alignItems: 'center',
-        height: 69,
+        height: 65,
         width: '100%',
-        marginTop: 42,
+        marginTop: 25,
+        justifyContent: 'center'
+
+    },
+    cancelButton: {
+        backgroundColor: '#E6F2FF',
+        borderRadius: dimen.cornerRadiusS,
+        alignSelf: 'center',
+        alignItems: 'center',
+        height: 65,
+        width: '100%',
+        marginTop: 15,
         justifyContent: 'center'
 
     },

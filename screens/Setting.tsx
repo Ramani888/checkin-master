@@ -20,6 +20,19 @@ const Setting: React.FC = () => {
     const [message, setMessage] = useState<string>('');
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
 
+    useEffect(() => {
+        setInitialValue()
+    }, [])
+
+    const setInitialValue = async () => {
+        const endPointUrl = await StorageHelper.getItem('endPointUrl');
+        const clientId = await StorageHelper.getItem('clientId');
+        const clientSecret = await StorageHelper.getItem('clientSecret');
+        setEndPointUrl(endPointUrl);
+        setClientId(clientId);
+        setClientSecret(clientSecret);
+    }
+
     const checkInternetConnection = async (): Promise<boolean> => {
         const state = await NetInfo.fetch();
         if (!state.isConnected) {
@@ -55,6 +68,7 @@ const Setting: React.FC = () => {
         }
 
         const isConnected = await checkInternetConnection();
+        console.log('isConnected', isConnected)
         if (!isConnected) return;
 
         try {
@@ -66,6 +80,9 @@ const Setting: React.FC = () => {
             }
             const { access_token, expires_in } = tokenData;
             const expiryTime = Date.now() + expires_in * 1000;
+            await StorageHelper.saveItem('endPointUrl', endPointUrl);
+            await StorageHelper.saveItem('clientId', clientId);
+            await StorageHelper.saveItem('clientSecret', clientSecret);
             await StorageHelper.saveItem('token', access_token);
             await StorageHelper.saveItem('expiryTime', expiryTime.toString());
             setMessage(strings.connectedSuccessfully);
