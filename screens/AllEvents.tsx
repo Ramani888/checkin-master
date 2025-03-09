@@ -87,7 +87,7 @@ const AllEvents: React.FC<any> = ({ navigation }) => {
 
   useFocusEffect(
     useCallback(() => {
-      // navigation.navigate('Event',{eventResult: '' })
+      // navigation.navigate('Event',{eventResult: results })
       const loadData = async () => {
         setLoading(true);
         setTimeout(async () => {
