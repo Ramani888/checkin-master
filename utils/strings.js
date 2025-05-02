@@ -14,6 +14,7 @@ const strings = {
   loading: "Loading",
   connecting: "Connecting...",
   connectionFailed: "Connection failed",
+  failedToConnect: 'Failed to connect, please check your details again',
   allFieldsRequired: "All fields are required",
   noInternet: "No Internet Connection",
   checkInternet: "Please check your internet connection and try again.",
@@ -35,6 +36,9 @@ const strings = {
   havingTroubleSubText: "Having trouble? Contact us!",
   addEventHint: "How to add an event?",
   watchTutorial: "Watch this step by step tutorial",
+  eventName: 'Event Name',
+  eventDate: 'Event Date',
+  numberOfMember: 'Enter Number of Member',
 
   //eventUserDetails
   addingUser: "Adding Attendee",

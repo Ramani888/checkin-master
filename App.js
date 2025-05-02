@@ -9,7 +9,7 @@ import TabNavigator from "./tabNavigator";
 import StorageHelper from "./utils/storageHelper";
 import { ActivityIndicator, Text, View } from "react-native";
 import Event from "./screens/Event";
-import { SafeAreaView } from "react-native-safe-area-context";
+import EventDetails from "./screens/EventDetails";
 
 const Stack = createStackNavigator();
 SplashScreen.preventAutoHideAsync();
@@ -57,21 +57,19 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{ headerShown: false }}
-          initialRouteName={
-            //   "Event"
-            isLoggedIn ? "TabNavigator" : "Login"
-          }
-        >
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Event" component={Event} />
-          <Stack.Screen name="TabNavigator" component={TabNavigator} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName={
+          isLoggedIn ? "TabNavigator" : "Login"
+        }
+      >
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Event" component={Event} />
+        <Stack.Screen name="EventDetail" component={EventDetails} />
+        <Stack.Screen name="TabNavigator" component={TabNavigator} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
